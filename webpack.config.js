@@ -5,7 +5,7 @@ var ExtractTextPlugin = require("extract-text-webpack-plugin");  //css单独打�
 var path = require('path');
 
 module.exports = {
-    devtool: 'eval-source-map',
+    //devtool: 'eval-source-map',
     entry: {
         calculater: [   
             'webpack/hot/dev-server',
