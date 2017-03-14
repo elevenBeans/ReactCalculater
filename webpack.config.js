@@ -40,8 +40,8 @@ module.exports = {
         port: 8888,
         colors: true,  //终端中输出结果为彩色
         //historyApiFallback: true,  //不跳转
-        inline: true,  //实时刷新
-        hot: true
+        inline: true,  
+        hot: true //实时刷新
     },
     resolve: {
         root: path.resolve(__dirname, "./src"),
