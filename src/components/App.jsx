@@ -27,8 +27,89 @@ var Content = React.createClass({
 			result: '0'
 		}
 	},
-	valueStrToResult: function(str){
+	finalValue: function(arrTotal){
+		var result = 0;
+		//debugger
+		for(var i=0; arrTotal.length > 1; i++){
+			if(arrTotal.indexOf('*') == -1 &&
+				arrTotal.indexOf('/') == -1 ){
+				break;
+			}
+			switch(arrTotal[i]){ 
+				// 每次需要删除已计算元素 并在删除位置插入结果
+				case '*':
+					result = arrTotal[i-1]*arrTotal[i+1];
+					arrTotal.splice(i-1, 3);
+					arrTotal.splice(i-1, 0, result);
+					i=0;
+					break;
+				case '/':
+					result = arrTotal[i-1]/arrTotal[i+1];
+					arrTotal.splice(i-1, 3);
+					arrTotal.splice(i-1, 0, result);
+					i=0;
+					break;
+				default:
+					break;
+			}
+		}
 
+		for(var i=0; arrTotal.length > 1; i++){
+			if(arrTotal.indexOf('+') == -1 &&
+				arrTotal.indexOf('-') == -1 ){
+				break;
+			}
+			switch(arrTotal[i]){
+				case '+':
+					result = arrTotal[i-1]+arrTotal[i+1];
+					arrTotal.splice(i-1, 3);
+					arrTotal.splice(i-1, 0, result);
+					i=0;
+					break;
+				case '-':
+					result = arrTotal[i-1]-arrTotal[i+1];
+					arrTotal.splice(i-1, 3);
+					arrTotal.splice(i-1, 0, result);
+					i=0;
+					break;
+				default:
+					break;
+			}
+		}
+		return result;
+	
+	},
+
+	calculate: function(arr1, arr2){
+		console.log(arr1);
+		console.log(arr2);
+
+		var arrTotal = [];
+		
+		for(var i=0;i<arr2.length;i++){
+			arrTotal.push(arr2[i]);
+			arrTotal.push(arr1[i]);
+		}
+
+		arrTotal = arrTotal.filter(function(item){
+			return item;
+		}).map(function(item){
+			return /\d+/.test(item)? ~~item:item;
+		});
+
+		console.log('digital:',arrTotal);
+
+		console.log('all:',arrTotal);
+
+		return this.finalValue(arrTotal);
+	},
+	valueStrToResult: function(str){
+		var regSymbol = /\+|\-|\*|\//ig;
+		var regNumber = /\s|\d+/ig
+		var numArr = str.split(regSymbol);
+		var symbolArr = str.split(regNumber);
+		
+		return this.calculate(numArr, symbolArr);
 	},
 	getResult: function(value){
 		console.log('asdf:',value);
@@ -38,11 +119,14 @@ var Content = React.createClass({
 		if(value == '='){
 			this.setState({
 				valueStr: '',
-				result: _valueStr.replace(/\+/ig,'')
+				result: this.valueStrToResult(_valueStr) // to be riched
 			});
 			return false;
 		} else if (value == 'ac'){
-			this.setState({result: 0});
+			this.setState({
+				valueStr: '',
+				result: 0
+			});
 			return false;
 		}
 		
@@ -63,7 +147,6 @@ var Content = React.createClass({
 });
 
 var Display = React.createClass({
-
 	render: function(){
 		return (
 			<div id="entrybox" className="text-right">
@@ -76,7 +159,6 @@ var Display = React.createClass({
 });
 
 var Buttons = React.createClass({
-
 	clickHandler: function(e){
 		this.props.setValue(e.target.value);
 	},
