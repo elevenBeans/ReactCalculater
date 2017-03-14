@@ -3,7 +3,7 @@
 var webpack = require('webpack');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");  //css单独打包
 var path = require('path');
-
+console.log(process.env.NODE_ENV);
 module.exports = {
     //devtool: 'eval-source-map',
     entry: {
@@ -40,7 +40,7 @@ module.exports = {
         colors: true,  //终端中输出结果为彩色
         //historyApiFallback: true,  //不跳转
         inline: true,  
-        hot: true //实时刷新
+        hot: process.env.NODE_ENV === 'dev' //实时刷新
     },
     resolve: {
         root: path.resolve(__dirname, "./src"),
