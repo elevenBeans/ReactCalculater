@@ -6,7 +6,6 @@ var path = require('path');
 
 module.exports = {
     devtool: 'eval-source-map',
-
     entry: {
         calculater: [   
             'webpack/hot/dev-server',
@@ -16,7 +15,7 @@ module.exports = {
     output: {
         path: './dist', //打包后的文件存放的地方
         publicPath: '/dist/', //静态资源文件内的请求路径指向静态资源服务器
-        filename: 'bundle.js' //打包后输出文件的文件名
+        filename: '[name].bundle.js' //打包后输出文件的文件名
     },
     externals: {
         'zepto': 'window.$'
@@ -36,7 +35,7 @@ module.exports = {
         ]
     },
     devServer: {
-        // contentBase: './src/views',  //本地服务器所加载的页面所在的目录
+        contentBase: './',  //本地服务器所加载的页面所在的目录
         port: 8888,
         colors: true,  //终端中输出结果为彩色
         //historyApiFallback: true,  //不跳转
