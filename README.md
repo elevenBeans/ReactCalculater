@@ -1,2 +1,1 @@
-# ReactCalculater
-A react calculater
+基于React+Webpack+ES6的计算器
