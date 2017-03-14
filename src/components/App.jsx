@@ -15,6 +15,5 @@ var App = React.createClass({
 
 //最终渲染
 ReactDom.render((
-    <App />
-
+  <App />
 ), document.getElementById('app'));
