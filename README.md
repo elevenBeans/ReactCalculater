@@ -2,4 +2,6 @@
 
 [Demo](https://elevenbeans.github.io/ReactCalculater/)
 
-![React Calculator](./src/images/calculator.png)
+
+<img src="./src/images/calculator.png" width="500px"/>
+
