@@ -30,7 +30,7 @@
     "root": true,
     "rules": {
         // 使用 2 个空格缩进
-        "indent": [2, 2],
+        "indent": [2,2],
         // 使用驼峰命名或者 UPPERCASE_WITH_UNDERSCORES
         "camelcase": [2, {"properties": "never"}],
         // 使用单引号
