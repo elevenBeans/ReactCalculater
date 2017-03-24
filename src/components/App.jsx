@@ -35,6 +35,7 @@ var Content = React.createClass({
                 break;
             }
             switch (arrTotal[i]) {
+            
             // 每次需要删除已计算元素 并在删除位置插入结果
             case '*':
                 result = arrTotal[i - 1] * arrTotal[i + 1];
