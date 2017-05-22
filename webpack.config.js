@@ -17,7 +17,7 @@ module.exports = {
         publicPath: '/dist/', //静态资源文件内的请求路径指向静态资源服务器
         filename: '[name].bundle.js' //打包后输出文件的文件名
     },
-    externals: {
+    externals: { // dev 这里应该不加 react 和 react-dom 的 external, build 要加
         'zepto': 'window.$'
     },
     module: {
